@@ -2,10 +2,26 @@ import React from "react";
 import Apple from "./Apple";
 import GridSquare from "./GridSquare";
 
-const Grid = ({ appleClick, expandTent }) => {
+const Grid = ({ appleClick, expandTent, gridLayout }) => {
   return (
     <div className="grid">
-      <GridSquare expandTent={expandTent} />
+      <div className="grid-center"></div>
+      {gridLayout.map(square => {
+        return (
+          <GridSquare
+            expandTent={expandTent}
+            key={`${square[0]}:${square[1]}`}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+export default Grid;
+
+/* 
+<GridSquare expandTent={expandTent} />
       <div className="grid-square" id="1:2"></div>
       <div className="grid-square" id="1:3"></div>
       <div className="grid-square" id="1:4"></div>
@@ -45,9 +61,4 @@ const Grid = ({ appleClick, expandTent }) => {
       <div className="grid-square" id="5:5">
         <Apple appleClick={appleClick} />
       </div>
-      <div className="grid-center"></div>
-    </div>
-  );
-};
-
-export default Grid;
+      */
