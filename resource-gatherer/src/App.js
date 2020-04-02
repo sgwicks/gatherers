@@ -50,14 +50,16 @@ class App extends React.Component {
   }
 
   appleClick = event => {
-    this.setState(currentState => {
-      return { stockpile: currentState.stockpile + 1 };
-    });
-    event.target.parentNode.innerHTML = "";
+    if (event.target.parentNode.className === "grid-tent") {
+      this.setState(currentState => {
+        return { stockpile: currentState.stockpile + 1 };
+      });
+      event.target.parentNode.innerHTML = "";
+    }
   };
 
   expandTent = event => {
-    if (this.state.stockpile > 0 && event.target.className !== "grid-tent") {
+    if (this.state.stockpile > 0 && event.target.className === "grid-square") {
       this.setState(currentState => {
         return { stockpile: currentState.stockpile - 1 };
       });

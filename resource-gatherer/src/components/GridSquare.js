@@ -1,10 +1,10 @@
 import React from "react";
 import Apple from "./Apple";
 
-const GridSquare = ({ expandTent, apple }) => {
+const GridSquare = ({ expandTent, apple, appleClick }) => {
   return (
     <div className="grid-square" onClick={expandTent}>
-      {apple && <Apple />}
+      {apple === "apple" && <Apple appleClick={appleClick} />}
     </div>
   );
 };

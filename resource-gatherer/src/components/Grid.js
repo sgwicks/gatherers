@@ -11,6 +11,7 @@ const Grid = ({ appleClick, expandTent, gridLayout }) => {
             expandTent={expandTent}
             key={`${square[0]}:${square[1]}`}
             apple={square[2]}
+            appleClick={appleClick}
           />
         );
       })}
