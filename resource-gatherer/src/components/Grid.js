@@ -1,5 +1,4 @@
 import React from "react";
-import Apple from "./Apple";
 import GridSquare from "./GridSquare";
 
 const Grid = ({ appleClick, expandTent, gridLayout }) => {
@@ -11,6 +10,7 @@ const Grid = ({ appleClick, expandTent, gridLayout }) => {
           <GridSquare
             expandTent={expandTent}
             key={`${square[0]}:${square[1]}`}
+            apple={square[2]}
           />
         );
       })}
