@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Grid appleClick={this.appleClick} />
+        <Grid appleClick={this.appleClick} expandTent={this.expandTent} />
         <Stockpile stockpile={this.state.stockpile} />
       </div>
     );
@@ -24,6 +24,15 @@ class App extends React.Component {
       return { stockpile: currentState.stockpile + 1 };
     });
     event.target.parentNode.innerHTML = "";
+  };
+
+  expandTent = event => {
+    if (this.state.stockpile > 0 && event.target.className !== "grid-tent") {
+      this.setState(currentState => {
+        return { stockpile: currentState.stockpile - 1 };
+      });
+      event.target.className = "grid-tent";
+    }
   };
 }
 
