@@ -1,11 +1,14 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import Header from "./components/Header";
+import "./App.css";
+import Grid from "./components/Grid";
 
 function App() {
   return (
-    <header>
-      <h1>Gatherer</h1>
-    </header>
+    <div className="App">
+      <Header />
+      <Grid />
+    </div>
   );
 }
 
