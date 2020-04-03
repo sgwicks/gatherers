@@ -76,7 +76,7 @@ class App extends React.Component {
   };
 
   expandTent = key => {
-    if (this.state.stockpile > 0) {
+    if (this.state.stockpile > 0 && this.state.target === 'grid-square') {
       this.setState(currentState => {
         return {
           stockpile: currentState.stockpile - 1,
