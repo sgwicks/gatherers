@@ -51,6 +51,7 @@ class Grid extends React.Component {
             key={i}
             apple={square[1]}
             appleClick={this.appleClick}
+            appleRot={this.appleRot}
           />
           
         );
@@ -60,6 +61,16 @@ class Grid extends React.Component {
     </>
   );}
 
+  appleRot = () => {
+    console.log('apple rotted')
+  }
+
+  updateStockpile = (num) => {
+    this.setState(currentState => {
+      return {stockpile: currentState.stockpile + num}
+    })
+  }
+
   handleMouse = event => {
     this.setState({
       target: event.target.className,
@@ -67,13 +78,11 @@ class Grid extends React.Component {
     });
   };
 
-
-
   appleClick = key => {
     if (this.state.targetParent === "grid-tent") {
+      this.updateStockpile(1)
       this.setState(currentState => {
         return { 
-          stockpile: currentState.stockpile + 1,
           gridLayout: currentState.gridLayout.map((square, i) => {
             return i === key
             ? [square[0]]
@@ -86,9 +95,9 @@ class Grid extends React.Component {
 
   expandTent = key => {
     if (this.state.stockpile > 0 && this.state.target === 'grid-square') {
+      this.updateStockpile(-1)
       this.setState(currentState => {
         return {
-          stockpile: currentState.stockpile - 1,
           gridLayout: currentState.gridLayout.map((square, i) => {
             return i === key
             ? square.map(item => item === 'square' ? 'tent' : item)

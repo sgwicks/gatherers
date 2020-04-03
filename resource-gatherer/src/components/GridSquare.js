@@ -7,6 +7,7 @@ const GridSquare = ({
   appleClick,
   className,
   handleMouse,
+  appleRot,
   i
 }) => {
   return (
@@ -18,7 +19,7 @@ const GridSquare = ({
       onMouseMove={handleMouse}
     >
       {apple === "apple" && (
-        <Apple appleClick={appleClick} handleMouse={handleMouse} i={i} />
+        <Apple appleClick={appleClick} handleMouse={handleMouse} i={i} appleRot={appleRot} />
       )}
     </div>
   );
