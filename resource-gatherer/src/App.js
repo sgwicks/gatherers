@@ -59,12 +59,18 @@ class App extends React.Component {
     });
   };
 
-  appleClick = event => {
+  appleClick = key => {
     if (this.state.targetParent === "grid-tent") {
       this.setState(currentState => {
-        return { stockpile: currentState.stockpile + 1 };
+        return { 
+          stockpile: currentState.stockpile + 1,
+          gridLayout: currentState.gridLayout.map((square, i) => {
+            return i === key
+            ? [square[0]]
+            : square
+          })
+         };
       });
-      event.target.parentNode.innerHTML = "";
     }
   };
 

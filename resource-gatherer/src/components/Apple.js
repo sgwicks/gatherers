@@ -1,12 +1,12 @@
 import React from "react";
 import apple from "../Apple.png";
 
-const Apple = ({ appleClick, handleMouse }) => {
+const Apple = ({ appleClick, handleMouse, i }) => {
   return (
     <img
       src={apple}
       alt="apple"
-      onClick={appleClick}
+      onClick={() => {appleClick(i)}}
       onMouseMove={handleMouse}
     />
   );
