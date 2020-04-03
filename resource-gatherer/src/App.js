@@ -8,31 +8,33 @@ class App extends React.Component {
   state = {
     stockpile: 1,
     gridLayout: [
-      [1, 1],
-      [1, 2, "apple"],
-      [1, 3],
-      [1, 4],
-      [1, 5],
-      [2, 1],
-      [2, 2, "apple"],
-      [2, 3, "apple"],
-      [2, 4],
-      [2, 5],
-      [3, 1],
-      [3, 2, "apple"],
-      [3, 4, "apple"],
-      [3, 5],
-      [4, 1],
-      [4, 2],
-      [4, 3, "apple"],
-      [4, 4, "apple"],
-      [4, 5],
-      [5, 1],
-      [5, 2],
-      [5, 3, "apple"],
-      [5, 4, "apple"],
-      [5, 5, "apple"]
-    ]
+      ["square"],
+      ['square', "apple"],
+      ["square"],
+      ["square"],
+      ["square"],
+      ["square"],
+      ['square', "apple"],
+      ['square', "apple"],
+      ["square"],
+      ["square"],
+      ["square"],
+      ['square', "apple"],
+      ['square', "apple"],
+      ["square"],
+      ["square"],
+      ["square"],
+      ['square', "apple"],
+      ['square', "apple"],
+      ["square"],
+      ["square"],
+      ["square"],
+      ['square', "apple"],
+      ['square', "apple"],
+      ['square', "apple"]
+        ],
+    target: "",
+    targetParent: ""
   };
 
   render() {
@@ -43,14 +45,22 @@ class App extends React.Component {
           appleClick={this.appleClick}
           expandTent={this.expandTent}
           gridLayout={this.state.gridLayout}
+          handleMouse={this.handleMouse}
         />
         <Stockpile stockpile={this.state.stockpile} />
       </div>
     );
   }
 
+  handleMouse = event => {
+    this.setState({
+      target: event.target.className,
+      targetParent: event.target.parentNode.className
+    });
+  };
+
   appleClick = event => {
-    if (event.target.parentNode.className === "grid-tent") {
+    if (this.state.targetParent === "grid-tent") {
       this.setState(currentState => {
         return { stockpile: currentState.stockpile + 1 };
       });
@@ -58,12 +68,18 @@ class App extends React.Component {
     }
   };
 
-  expandTent = event => {
-    if (this.state.stockpile > 0 && event.target.className === "grid-square") {
+  expandTent = key => {
+    if (this.state.stockpile > 0) {
       this.setState(currentState => {
-        return { stockpile: currentState.stockpile - 1 };
+        return {
+          stockpile: currentState.stockpile - 1,
+          gridLayout: currentState.gridLayout.map((square, i) => {
+            return i === key
+            ? square.map(item => item === 'square' ? 'tent' : item)
+            : square;
+          })
+        };
       });
-      event.target.className = "grid-tent";
     }
   };
 }

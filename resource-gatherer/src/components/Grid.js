@@ -1,16 +1,19 @@
 import React from "react";
 import GridSquare from "./GridSquare";
 
-const Grid = ({ appleClick, expandTent, gridLayout }) => {
+const Grid = ({ appleClick, expandTent, gridLayout, handleMouse }) => {
   return (
     <div className="grid">
       <div className="grid-center"></div>
-      {gridLayout.map(square => {
+      {gridLayout.map((square, i) => {
         return (
           <GridSquare
+            i={i}
+            handleMouse={handleMouse}
+            className={`grid-${square[0]}`}
             expandTent={expandTent}
-            key={`${square[0]}:${square[1]}`}
-            apple={square[2]}
+            key={i}
+            apple={square[1]}
             appleClick={appleClick}
           />
         );
