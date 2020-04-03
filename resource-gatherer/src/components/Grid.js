@@ -47,7 +47,7 @@ class Grid extends React.Component {
             i={i}
             handleMouse={this.handleMouse}
             className={`grid-${square[0]}`}
-            expandTent={this.expandTent}
+            tentClick={this.tentClick}
             key={i}
             apple={square[1]}
             appleClick={this.appleClick}
@@ -93,9 +93,14 @@ class Grid extends React.Component {
     }
   };
 
-  expandTent = key => {
+  tentClick = (key) => {
     if (this.state.stockpile > 0 && this.state.target === 'grid-square') {
       this.updateStockpile(-1)
+      this.expandTent(key)
+    }
+  }
+
+  expandTent = key => {
       this.setState(currentState => {
         return {
           gridLayout: currentState.gridLayout.map((square, i) => {
@@ -105,7 +110,6 @@ class Grid extends React.Component {
           })
         };
       });
-    }
   };
 };
 

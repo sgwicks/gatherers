@@ -2,7 +2,7 @@ import React from "react";
 import Apple from "./Apple";
 
 const GridSquare = ({
-  expandTent,
+  tentClick,
   apple,
   appleClick,
   className,
@@ -14,7 +14,7 @@ const GridSquare = ({
     <div
       className={className}
       onClick={() => {
-        expandTent(i);
+        tentClick(i);
       }}
       onMouseMove={handleMouse}
     >
