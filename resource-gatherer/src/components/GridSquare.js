@@ -1,5 +1,6 @@
 import React from "react";
 import Apple from "./Apple";
+import Tent from "./Tent";
 
 const GridSquare = ({
   tentClick,
@@ -18,6 +19,9 @@ const GridSquare = ({
       }}
       onMouseMove={handleMouse}
     >
+      {className==='grid-tent' && (
+        <Tent />
+      )}
       {apple === "apple" && (
         <Apple appleClick={appleClick} handleMouse={handleMouse} i={i} appleRot={appleRot} />
       )}

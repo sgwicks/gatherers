@@ -67,7 +67,7 @@
   border-width: 1px;
   height: 79px;
   width: 79px;
-  background-image: url("./Tent.jpg");
+  /* background-image: url("./Tent.jpg"); */
 }
 
 #stockpile {
@@ -84,6 +84,16 @@
 
 .stockpile-text {
   font-size: 24px;
+}
+
+.tent-img {
+  position: absolute;
+  z-index: -10;
+}
+
+.apple-img {
+  position: absolute;
+  z-index: 0;
 }
 
 /* DEPRECATED CSS (no longer used in App) */

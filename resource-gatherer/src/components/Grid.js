@@ -115,7 +115,6 @@ class Grid extends React.Component {
        };
     });
   };
-  
 
 // Handle tent events
 
@@ -137,6 +136,18 @@ class Grid extends React.Component {
         };
       });
   };
+
+  tentCollapse = key => {
+    this.setState(currentState => {
+      return {
+        gridLayout: currentState.gridLayout.map((square, i) => {
+          return i === key
+          ? square.map(item => item === 'tent' ? 'square' : item)
+          : square;
+        })
+      };
+    });
+  }
 
 };
 

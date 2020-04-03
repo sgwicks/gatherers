@@ -13,6 +13,7 @@ class Apple extends React.Component  {
   render() {
     return (
       <img
+        class="apple-img"
         src={apple}
         alt="apple"
         onClick={() => {this.props.appleClick(this.props.i)}}
