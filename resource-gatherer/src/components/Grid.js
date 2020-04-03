@@ -61,8 +61,16 @@ class Grid extends React.Component {
     </>
   );}
 
-  appleRot = () => {
-    console.log('apple rotted')
+  appleRot = (key) => {
+    this.setState(currentState => {
+      return { 
+        gridLayout: currentState.gridLayout.map((square, i) => {
+          return i === key
+          ? [square[0]]
+          : square
+        })
+       };
+    });
   }
 
   updateStockpile = (num) => {
@@ -81,15 +89,7 @@ class Grid extends React.Component {
   appleClick = key => {
     if (this.state.targetParent === "grid-tent") {
       this.updateStockpile(1)
-      this.setState(currentState => {
-        return { 
-          gridLayout: currentState.gridLayout.map((square, i) => {
-            return i === key
-            ? [square[0]]
-            : square
-          })
-         };
-      });
+      this.appleRot(key)
     }
   };
 
