@@ -7,36 +7,45 @@ class Grid extends React.Component {
     stockpile: 1,
     gridLayout: [
       ["square"],
-      ['square', "apple"],
+      ['square'],
       ["square"],
       ["square"],
       ["square"],
       ["square"],
-      ['square', "apple"],
-      ['square', "apple"],
+      ['square'],
+      ['square'],
       ["square"],
       ["square"],
       ["square"],
-      ['square', "apple"],
-      ['tent'],
-      ['square', "apple"],
+      ['square'],
+      ['square'],
+      ['square'],
       ["square"],
       ["square"],
       ["square"],
-      ['square', "apple"],
-      ['square', "apple"],
+      ['square'],
+      ['square'],
       ["square"],
       ["square"],
       ["square"],
-      ['square', "apple"],
-      ['square', "apple"],
-      ['square', "apple"]
+      ['square'],
+      ['square'],
+      ['square']
         ],
     target: "",
     targetParent: ""
   };
 
   componentDidMount() {
+    const startSquare = Math.floor(Math.random()*25);
+
+    this.expandTent(startSquare);
+    this.appleSpawn(startSquare);
+
+    this.stockpileTimer = setInterval(() => {
+      this.updateStockpile(-1)
+    }, 10000);
+
     this.appleTimer = setInterval(() => {
       const key = Math.floor(Math.random()*25)
       this.appleSpawn(key)
@@ -65,7 +74,7 @@ class Grid extends React.Component {
         );
       })}
     </div>
-    <Stockpile stockpile={this.state.stockpile}/>
+    <Stockpile stockpile={this.state.stockpile} />
     </>
   );}
 
@@ -79,10 +88,18 @@ class Grid extends React.Component {
 // Handle stockpile events
 
   updateStockpile = (num) => {
-    this.setState(currentState => {
-      return {stockpile: currentState.stockpile + num}
-    })
+    if(this.state.stockpile > 0) {
+      this.setState(currentState => {
+        return {stockpile: currentState.stockpile + num}
+      }, () => {
+        this.stockpileEmpty()
+      })
+    }
   };
+
+  stockpileEmpty = () => {
+    if (!this.state.stockpile) this.setState({stockpile: 'YOU LOSE'})
+  }
 
 // Handle apple events
 
