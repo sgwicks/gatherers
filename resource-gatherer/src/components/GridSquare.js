@@ -4,6 +4,7 @@ import Tent from "./Tent";
 
 const GridSquare = ({
   tentClick,
+  tentCollapse,
   apple,
   appleClick,
   className,
@@ -20,7 +21,7 @@ const GridSquare = ({
       onMouseMove={handleMouse}
     >
       {className==='grid-tent' && (
-        <Tent />
+        <Tent i={i} tentCollapse={tentCollapse}/>
       )}
       {apple === "apple" && (
         <Apple appleClick={appleClick} handleMouse={handleMouse} i={i} appleRot={appleRot} />

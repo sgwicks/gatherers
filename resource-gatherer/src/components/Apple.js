@@ -2,7 +2,6 @@ import React from "react";
 import apple from "../Apple.png";
 
 class Apple extends React.Component  {
-  state = { }
 
   componentDidMount() {
     this.timer = setTimeout(() => {
@@ -13,7 +12,7 @@ class Apple extends React.Component  {
   render() {
     return (
       <img
-        class="apple-img"
+        className="apple-img"
         src={apple}
         alt="apple"
         onClick={() => {this.props.appleClick(this.props.i)}}

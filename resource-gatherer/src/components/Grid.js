@@ -59,6 +59,7 @@ class Grid extends React.Component {
             apple={square[1]}
             appleClick={this.appleClick}
             appleRot={this.appleRot}
+            tentCollapse={this.tentCollapse}
           />
           
         );
