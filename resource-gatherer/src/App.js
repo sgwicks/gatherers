@@ -20,6 +20,7 @@ class App extends React.Component {
       ["square"],
       ["square"],
       ['square', "apple"],
+      ['tent'],
       ['square', "apple"],
       ["square"],
       ["square"],

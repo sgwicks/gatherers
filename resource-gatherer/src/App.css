@@ -47,31 +47,7 @@
   grid-template-rows: repeat(5, 80px);
 }
 
-.grid-center {
-  grid-area: 3 / 3 / 4 / 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-style: solid;
-  border-width: 1px;
-  height: 79px;
-  width: 79px;
-  background-image: url("./Tent.jpg");
-}
-
 .grid-square {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-style: solid;
-  border-width: 1px;
-  height: 79px;
-  width: 79px;
-  background-color: #779512;
-}
-
-.grid-apple {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,4 +84,30 @@
 
 .stockpile-text {
   font-size: 24px;
+}
+
+/* DEPRECATED CSS (no longer used in App) */
+
+.grid-apple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-width: 1px;
+  height: 79px;
+  width: 79px;
+  background-color: #779512;
+}
+
+.grid-center {
+  grid-area: 3 / 3 / 4 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  height: 79px;
+  width: 79px;
+  background-image: url("./Tent.jpg");
 }
