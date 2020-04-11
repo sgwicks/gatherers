@@ -1,6 +1,7 @@
-import React from "react";
-import Apple from "./Apple";
-import Tent from "./Tent";
+import React, { useState } from 'react';
+import Apple from './Apple';
+import Tent from './Tent';
+import * as utils from '../utils/utils';
 
 const GridSquare = ({
   tentClick,
@@ -8,23 +9,30 @@ const GridSquare = ({
   apple,
   appleClick,
   className,
-  handleMouse,
   appleRot,
   i
 }) => {
+  const [coordinate, setCoordinate] = useState(i);
+  const [target, setTarget] = useState('');
+  const [targetParent, setTargetParent] = useState('');
+
   return (
     <div
       className={className}
       onClick={() => {
         tentClick(i);
       }}
-      onMouseMove={handleMouse}
-    >
-      {className==='grid-tent' && (
-        <Tent i={i} tentCollapse={tentCollapse}/>
-      )}
-      {apple === "apple" && (
-        <Apple appleClick={appleClick} handleMouse={handleMouse} i={i} appleRot={appleRot} />
+      onMouseMove={(event) => {
+        utils.handleMouse(event, setTarget);
+      }}>
+      {className === 'grid-tent' && <Tent i={i} tentCollapse={tentCollapse} />}
+      {apple === 'apple' && (
+        <Apple
+          appleClick={appleClick}
+          handleMouse={handleMouse}
+          i={i}
+          appleRot={appleRot}
+        />
       )}
     </div>
   );
