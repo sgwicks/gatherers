@@ -7,7 +7,12 @@ const useGridSquare = (updateStockpile, stockpile, startTent, startApple) => {
   const [target, setTarget] = useState('');
   const [appleList, updateAppleList] = useState([startApple]);
   const [tentList, updateTentList] = useState([startTent]);
-  const { renderApple } = useApple(updateStockpile, stockpile, updateAppleList);
+  const { renderApple } = useApple(
+    updateStockpile,
+    stockpile,
+    updateAppleList,
+    tentList
+  );
 
   useEffect(() => {}, []);
 

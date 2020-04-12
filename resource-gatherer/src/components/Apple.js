@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import apple from '../Apple.png';
 import * as utils from '../utils/utils';
 
-const useApple = (updateStockpile, stockpile, updateAppleList) => {
+const useApple = (updateStockpile, stockpile, updateAppleList, tentList) => {
   const [target, setTarget] = useState('');
   const [targetParent, setTargetParent] = useState('');
 
@@ -12,8 +12,8 @@ const useApple = (updateStockpile, stockpile, updateAppleList) => {
   //   }, 5000);
   // }, []);
 
-  const appleClick = () => {
-    updateStockpile(1);
+  const appleClick = (i) => {
+    if (tentList.includes(i)) updateStockpile(1);
   };
 
   const renderApple = (i) => (
