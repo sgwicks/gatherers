@@ -1,7 +1,6 @@
-import useStockpile from '../components/Stockpile';
-
-export const handleMouse = (event, updater) => {
-  updater(event.target.className);
+export const handleMouse = (event, setTarget, setTargetParent) => {
+  setTarget(event.target.className);
+  setTargetParent(event.target.parent);
 };
 
 export const tentCollapse = (key) => {
