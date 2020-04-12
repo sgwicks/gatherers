@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Apple from './Apple';
 import Tent from './Tent';
 import * as utils from '../utils/utils';
 
-const GridSquare = ({
-  tentClick,
-  tentCollapse,
-  apple,
-  appleClick,
-  className,
-  appleRot,
-  i
-}) => {
-  const [coordinate, setCoordinate] = useState(i);
+const useGridSquare = (updateStockpile, stockpile) => {
   const [target, setTarget] = useState('');
-  const [targetParent, setTargetParent] = useState('');
+  const [className, setClassName] = useState('grid-square');
+  const [isApple, setIsApple] = useState(false);
+  const [isTent, setIsTent] = useState(false);
+  const [tentList, updateTentList] = useState([]);
 
-  return (
+  useEffect(() => {}, []);
+
+  const tentClick = (i) => {
+    if (stockpile > 0 && className === 'grid-square') {
+      updateStockpile(-1);
+      updateTentList([...tentList, i]);
+    }
+  };
+
+  const renderGridSquare = (i) => (
     <div
+      key={i}
       className={className}
       onClick={() => {
         tentClick(i);
@@ -25,17 +29,12 @@ const GridSquare = ({
       onMouseMove={(event) => {
         utils.handleMouse(event, setTarget);
       }}>
-      {className === 'grid-tent' && <Tent i={i} tentCollapse={tentCollapse} />}
-      {apple === 'apple' && (
-        <Apple
-          appleClick={appleClick}
-          handleMouse={handleMouse}
-          i={i}
-          appleRot={appleRot}
-        />
-      )}
+      {tentList.includes(i) && <Tent i={i} />}
+      {/* {isApple && <Apple handleMouse={utils.handleMouse} i={i} />} */}
     </div>
   );
+
+  return { renderGridSquare };
 };
 
-export default GridSquare;
+export default useGridSquare;

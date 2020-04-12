@@ -1,25 +1,29 @@
-import React from "react";
-import apple from "../Apple.png";
+import React, { useEffect, useState } from 'react';
+import apple from '../Apple.png';
+import * as utils from '../utils/utils';
 
-class Apple extends React.Component  {
+const Apple = () => {
+  const [target, setTarget] = useState('');
+  const [targetParent, setTargetParent] = useState('');
 
-  componentDidMount() {
+  useEffect(() => {
     this.timer = setTimeout(() => {
       this.props.appleRot(this.props.i);
-    }, 5000)
-  }
+    }, 5000);
+  }, []);
 
-  render() {
-    return (
-      <img
-        className="apple-img"
-        src={apple}
-        alt="apple"
-        onClick={() => {this.props.appleClick(this.props.i)}}
-        onMouseMove={this.props.handleMouse}
-      />
-    );
-  }
+  const { handleMouse, i, appleClick } = this.props;
+  return (
+    <img
+      className='apple-img'
+      src={apple}
+      alt='apple'
+      onClick={() => {
+        appleClick(i);
+      }}
+      onMouseMove={(event) => utils.handleMouse(event, setTarget)}
+    />
+  );
 };
 
 export default Apple;
