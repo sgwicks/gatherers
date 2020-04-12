@@ -1,45 +1,24 @@
+import { useRef, useEffect } from 'react';
+
 export const handleMouse = (event, setTarget, setTargetParent) => {
   setTarget(event.target.className);
   setTargetParent(event.target.parent);
 };
 
-export const tentCollapse = (key) => {
-  this.setState((currentState) => {
-    return {
-      gridLayout: currentState.gridLayout.map((square, i) => {
-        return i === key
-          ? square.map((item) => (item === 'tent' ? 'square' : item))
-          : square;
-      })
+export const useInterval = (callback, delay) => {
+  const savedCallback = useRef();
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    const tick = () => {
+      savedCallback.current();
     };
-  });
-};
-
-// Handle apple events
-
-export const appleClick = (key) => {
-  if (this.state.targetParent === 'grid-tent') {
-    this.updateStockpile(1);
-    this.appleRot(key);
-  }
-};
-
-export const appleRot = (key) => {
-  this.setState((currentState) => {
-    return {
-      gridLayout: currentState.gridLayout.map((square, i) => {
-        return i === key ? [square[0]] : square;
-      })
-    };
-  });
-};
-
-export const appleSpawn = (key) => {
-  this.setState((currentState) => {
-    return {
-      gridLayout: currentState.gridLayout.map((square, i) => {
-        return i === key ? [square[0], 'apple'] : square;
-      })
-    };
-  });
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 };

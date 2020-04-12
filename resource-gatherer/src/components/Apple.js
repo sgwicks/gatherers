@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import apple from '../Apple.png';
 
-const useApple = (updateStockpile, tentList) => {
-  const startApple = Math.floor(Math.random() * 25);
-
-  const [appleList, updateAppleList] = useState([startApple]);
+const Apple = ({ i, updateStockpile, setIsApple, isTent }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      setIsApple(false);
+    }, 5000);
+  }, [setIsApple]);
 
   const appleClick = (i) => {
-    if (tentList.includes(i)) {
+    if (isTent) {
       updateStockpile(1);
-      removeApple(i);
+      setIsApple(false);
     }
   };
 
-  const removeApple = (i) => {
-    const apples = appleList.filter((apple) => apple !== i);
-    updateAppleList(apples);
-  };
-
-  const renderApple = (i) => (
+  return (
     <img
       className='apple-img'
       src={apple}
@@ -26,13 +23,8 @@ const useApple = (updateStockpile, tentList) => {
       onClick={() => {
         appleClick(i);
       }}
-      timer={setTimeout(() => {
-        removeApple(i);
-      }, 5000)}
     />
   );
-
-  return { renderApple, appleList };
 };
 
-export default useApple;
+export default Apple;

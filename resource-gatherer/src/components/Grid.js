@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import useGridSquare from './GridSquare';
+import React, { useState, useEffect } from 'react';
+import GridSquare from './GridSquare';
 import useStockpile from './Stockpile';
 
 const Grid = () => {
@@ -31,24 +31,31 @@ const Grid = () => {
     ['square']
   ]);
 
+  const [apple, setApple] = useState(Math.floor(Math.random() * 25));
+  const [startTent] = useState(Math.floor(Math.random() * 25));
+
   const { updateStockpile, renderStockpile, stockpile } = useStockpile();
-  const { renderGridSquare } = useGridSquare(updateStockpile, stockpile);
 
   useEffect(() => {
-    //   this.stockpileTimer = setInterval(() => {
-    //     this.updateStockpile(-1);
-    //   }, 10000);
-    //   this.appleTimer = setInterval(() => {
-    //     const key = Math.floor(Math.random() * 25);
-    //     this.appleSpawn(key);
-    //   }, 1000);
+    setInterval(() => {
+      setApple(Math.floor(Math.random() * 25));
+    }, 1000);
   }, []);
 
   return (
     <>
       <div className='grid'>
         {gridLayout.map((square, i) => {
-          return renderGridSquare(i);
+          return (
+            <GridSquare
+              key={i}
+              i={i}
+              updateStockpile={updateStockpile}
+              stockpile={stockpile}
+              startTent={startTent}
+              apple={apple}
+            />
+          );
         })}
       </div>
       {renderStockpile()}

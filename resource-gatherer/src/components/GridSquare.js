@@ -1,46 +1,44 @@
-import React, { useState } from 'react';
-import useApple from './Apple';
+import React, { useState, useEffect } from 'react';
+import Apple from './Apple';
 import Tent from './Tent';
 
-const useGridSquare = (updateStockpile, stockpile) => {
-  const startTent = Math.floor(Math.random() * 25);
-
-  const [tentList, updateTentList] = useState([startTent]);
+const GridSquare = ({ i, updateStockpile, stockpile, startTent, apple }) => {
+  const [isApple, setIsApple] = useState(false);
+  const [isTent, setIsTent] = useState(false);
 
   const tentClick = (i) => {
-    if (stockpile > 0 && !tentList.includes(i)) {
+    if (stockpile > 0 && !isTent) {
       updateStockpile(-1);
-      updateTentList([...tentList, i]);
+      setIsTent(true);
     }
   };
 
-  const removeTent = (i) => {
-    const tents = tentList.filter((tent) => tent !== i);
-    updateTentList(tents);
-  };
+  useEffect(() => {
+    if (startTent === i) setIsTent(true);
+  }, [startTent, i]);
 
-  const { renderApple, appleList } = useApple(updateStockpile, tentList);
+  useEffect(() => {
+    if (apple === i) setIsApple(true);
+  }, [apple, i]);
 
-  const renderGridSquare = (i) => (
+  return (
     <div
       key={i}
       className={'grid-square'}
       onClick={() => {
         tentClick(i);
       }}>
-      {tentList.includes(i) && (
-        <Tent
-          key={i}
-          timer={setTimeout(() => {
-            removeTent(i);
-          }, 5000)}
+      {isTent && <Tent setIsTent={setIsTent} />}
+      {isApple && (
+        <Apple
+          i={i}
+          updateStockpile={updateStockpile}
+          setIsApple={setIsApple}
+          isTent={isTent}
         />
       )}
-      {appleList.includes(i) && renderApple(i)}
     </div>
   );
-
-  return { renderGridSquare };
 };
 
-export default useGridSquare;
+export default GridSquare;
