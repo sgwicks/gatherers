@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import apple from '../Apple.png';
-import * as utils from '../utils/utils';
 
-const useApple = (updateStockpile, stockpile, tentList) => {
+const useApple = (updateStockpile, tentList) => {
   const startApple = Math.floor(Math.random() * 25);
 
-  const [target, setTarget] = useState('');
-  const [targetParent, setTargetParent] = useState('');
   const [appleList, updateAppleList] = useState([startApple]);
-
-  // useEffect(() => {
-  //   this.timer = setTimeout(() => {
-  //     this.props.appleRot(this.props.i);
-  //   }, 5000);
-  // }, []);
 
   const appleClick = (i) => {
     if (tentList.includes(i)) {
@@ -35,9 +26,9 @@ const useApple = (updateStockpile, stockpile, tentList) => {
       onClick={() => {
         appleClick(i);
       }}
-      onMouseMove={(event) =>
-        utils.handleMouse(event, setTarget, setTargetParent)
-      }
+      timer={setTimeout(() => {
+        removeApple(i);
+      }, 5000)}
     />
   );
 

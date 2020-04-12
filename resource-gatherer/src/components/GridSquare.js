@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useApple from './Apple';
 import Tent from './Tent';
-import * as utils from '../utils/utils';
 
-const useGridSquare = (updateStockpile, stockpile, startTent) => {
-  const [target, setTarget] = useState('');
+const useGridSquare = (updateStockpile, stockpile) => {
+  const startTent = Math.floor(Math.random() * 25);
+
   const [tentList, updateTentList] = useState([startTent]);
-  const { renderApple, appleList } = useApple(
-    updateStockpile,
-    stockpile,
-    tentList
-  );
-
-  useEffect(() => {}, []);
 
   const tentClick = (i) => {
     if (stockpile > 0 && !tentList.includes(i)) {
@@ -21,17 +14,16 @@ const useGridSquare = (updateStockpile, stockpile, startTent) => {
     }
   };
 
+  const { renderApple, appleList } = useApple(updateStockpile, tentList);
+
   const renderGridSquare = (i) => (
     <div
       key={i}
       className={'grid-square'}
       onClick={() => {
         tentClick(i);
-      }}
-      onMouseMove={(event) => {
-        utils.handleMouse(event, setTarget, setTarget);
       }}>
-      {tentList.includes(i) && <Tent i={i} />}
+      {tentList.includes(i) && <Tent key={i} />}
       {appleList.includes(i) && renderApple(i)}
     </div>
   );

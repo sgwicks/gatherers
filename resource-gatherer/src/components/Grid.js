@@ -30,14 +30,9 @@ const Grid = () => {
     ['square'],
     ['square']
   ]);
-  const startTent = Math.floor(Math.random() * 25);
 
   const { updateStockpile, renderStockpile, stockpile } = useStockpile();
-  const { renderGridSquare } = useGridSquare(
-    updateStockpile,
-    stockpile,
-    startTent
-  );
+  const { renderGridSquare } = useGridSquare(updateStockpile, stockpile);
 
   useEffect(() => {
     //   this.stockpileTimer = setInterval(() => {
