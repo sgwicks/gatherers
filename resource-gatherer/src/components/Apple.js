@@ -8,7 +8,7 @@ const Apple = ({ i, updateStockpile, setIsApple, isTent }) => {
     }, 5000);
   }, [setIsApple]);
 
-  const appleClick = (i) => {
+  const appleClick = () => {
     if (isTent) {
       updateStockpile(1);
       setIsApple(false);
@@ -16,14 +16,7 @@ const Apple = ({ i, updateStockpile, setIsApple, isTent }) => {
   };
 
   return (
-    <img
-      className='apple-img'
-      src={apple}
-      alt='apple'
-      onClick={() => {
-        appleClick(i);
-      }}
-    />
+    <img className='apple-img' src={apple} alt='apple' onClick={appleClick} />
   );
 };
 
