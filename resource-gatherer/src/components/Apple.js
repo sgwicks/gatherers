@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import apple from '../Apple.png';
 import * as utils from '../utils/utils';
 
-const useApple = (updateStockpile, stockpile, updateAppleList, tentList) => {
+const useApple = (updateStockpile, stockpile, tentList) => {
+  const startApple = Math.floor(Math.random() * 25);
+
   const [target, setTarget] = useState('');
   const [targetParent, setTargetParent] = useState('');
+  const [appleList, updateAppleList] = useState([startApple]);
 
   // useEffect(() => {
   //   this.timer = setTimeout(() => {
@@ -13,7 +16,15 @@ const useApple = (updateStockpile, stockpile, updateAppleList, tentList) => {
   // }, []);
 
   const appleClick = (i) => {
-    if (tentList.includes(i)) updateStockpile(1);
+    if (tentList.includes(i)) {
+      updateStockpile(1);
+      removeApple(i);
+    }
+  };
+
+  const removeApple = (i) => {
+    const apples = appleList.filter((apple) => apple !== i);
+    updateAppleList(apples);
   };
 
   const renderApple = (i) => (
@@ -30,7 +41,7 @@ const useApple = (updateStockpile, stockpile, updateAppleList, tentList) => {
     />
   );
 
-  return { renderApple };
+  return { renderApple, appleList };
 };
 
 export default useApple;

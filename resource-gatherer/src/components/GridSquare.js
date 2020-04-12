@@ -3,14 +3,12 @@ import useApple from './Apple';
 import Tent from './Tent';
 import * as utils from '../utils/utils';
 
-const useGridSquare = (updateStockpile, stockpile, startTent, startApple) => {
+const useGridSquare = (updateStockpile, stockpile, startTent) => {
   const [target, setTarget] = useState('');
-  const [appleList, updateAppleList] = useState([startApple]);
   const [tentList, updateTentList] = useState([startTent]);
-  const { renderApple } = useApple(
+  const { renderApple, appleList } = useApple(
     updateStockpile,
     stockpile,
-    updateAppleList,
     tentList
   );
 

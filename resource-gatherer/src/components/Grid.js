@@ -31,13 +31,12 @@ const Grid = () => {
     ['square']
   ]);
   const startTent = Math.floor(Math.random() * 25);
-  const startApple = Math.floor(Math.random() * 25);
+
   const { updateStockpile, renderStockpile, stockpile } = useStockpile();
   const { renderGridSquare } = useGridSquare(
     updateStockpile,
     stockpile,
-    startTent,
-    startApple
+    startTent
   );
 
   useEffect(() => {
