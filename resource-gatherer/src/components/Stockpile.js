@@ -5,9 +5,8 @@ const useStockpile = (initialStockpile) => {
   const [stockpile, setStockpile] = useState(1);
 
   const updateStockpile = (num) => {
-    // if (stockpile > 0)
-    return setStockpile(stockpile + num);
-    // else setStockpile('YOU LOSE');
+    if (stockpile > 0) return setStockpile(stockpile + num);
+    else setStockpile('YOU LOSE');
   };
 
   const renderStockpile = () => (
