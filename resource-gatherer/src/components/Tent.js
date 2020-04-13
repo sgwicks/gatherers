@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import tent from '../Tent.png';
 
-const Tent = ({ setIsTent }) => {
+const Tent = ({ setTentLookup, isTent, tentLookup }) => {
   useEffect(() => {
     setTimeout(() => {
-      setIsTent(false);
+      setTentLookup({ ...tentLookup, [isTent]: false });
     }, 4000);
   });
 
