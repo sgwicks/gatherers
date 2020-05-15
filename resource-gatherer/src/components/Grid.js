@@ -1,6 +1,7 @@
 import React from 'react';
 import GridSquare from './GridSquare';
 import Stockpile from './Stockpile';
+import Instructions from './Instructions';
 
 class Grid extends React.Component {
   state = {
@@ -71,7 +72,7 @@ class Grid extends React.Component {
               />
             );
           })}
-          <div className='instructions'>Instructions</div>
+          <Instructions />
           <Stockpile stockpile={this.state.stockpile} />
         </div>
       </>

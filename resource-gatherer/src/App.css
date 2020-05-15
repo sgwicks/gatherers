@@ -58,6 +58,21 @@
   grid-area: instructions;
   border: solid black 1px;
   margin-left: 15px;
+  padding: 5px;
+}
+
+.instructionsH2 {
+  margin: 0;
+}
+
+ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+ol li {
+  margin: 20px 0;
+  padding: 0;
 }
 
 .grid-square {
