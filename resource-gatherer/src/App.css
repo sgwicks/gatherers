@@ -43,8 +43,36 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(5, 80px);
-  grid-template-rows: repeat(5, 80px);
+  grid-template-columns: repeat(5, 80px) 250px;
+  grid-template-rows: repeat(5, 80px) auto;
+  grid-template-areas:
+    '. . . . . instructions'
+    '. . . . . instructions'
+    '. . . . . instructions'
+    '. . . . . instructions'
+    '. . . . . instructions'
+    'stockpile stockpile stockpile stockpile stockpile instructions';
+}
+
+.instructions {
+  grid-area: instructions;
+  border: solid black 1px;
+  margin-left: 15px;
+  padding: 5px;
+}
+
+.instructionsH2 {
+  margin: 0;
+}
+
+ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+ol li {
+  margin: 20px 0;
+  padding: 0;
 }
 
 .grid-square {
@@ -67,6 +95,7 @@
   border-width: 1px;
   height: 79px;
   width: 79px;
+
   /* background-image: url("./Tent.jpg"); */
 }
 
@@ -80,6 +109,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  grid-area: stockpile;
 }
 
 .stockpile-text {
@@ -119,5 +149,5 @@
   border-width: 1px;
   height: 79px;
   width: 79px;
-  background-image: url("./Tent.jpg");
+  background-image: url('./Tent.jpg');
 }
