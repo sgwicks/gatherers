@@ -8,9 +8,6 @@ const GridSquare = ({
   stockpile,
   startTent,
   apple,
-  name,
-  tentLookup,
-  setTentLookup
 }) => {
   const [isApple, setIsApple] = useState(false);
   const [isTent, setIsTent] = useState(false)
@@ -27,10 +24,7 @@ const GridSquare = ({
   }, [apple, i]);
 
   const tentClick = () => {
-    if (
-      stockpile > 0 &&
-      !isTent
-    ) {
+    if (stockpile > 0 && !isTent) {
       updateStockpile(-1);
       setIsTent(true);
     }

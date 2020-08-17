@@ -50,7 +50,6 @@ const Grid = () => {
           return (
             <GridSquare
               key={`Grid ${column}:${row}`}
-              name={square}
               i={i}
               updateStockpile={updateStockpile}
               stockpile={stockpile}
