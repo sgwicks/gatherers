@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Apple from './Apple';
 import Tent from './Tent';
-import { checkAdjacency } from '../utils/utils';
 
 const GridSquare = ({
   i,
@@ -14,13 +13,14 @@ const GridSquare = ({
   setTentLookup
 }) => {
   const [isApple, setIsApple] = useState(false);
-  const isTent = `${name.column}:${name.row}`;
+  const [isTent, setIsTent] = useState(false)
 
   useEffect(() => {
     if (startTent === i) {
-      setTentLookup({ ...tentLookup, [isTent]: true });
+      setIsTent(true)
     }
-  }, [startTent]);
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (apple === i) setIsApple(true);
@@ -29,28 +29,25 @@ const GridSquare = ({
   const tentClick = () => {
     if (
       stockpile > 0 &&
-      !tentLookup[isTent] &&
-      checkAdjacency(name, tentLookup)
+      !isTent
     ) {
       updateStockpile(-1);
-      setTentLookup({ ...tentLookup, [isTent]: true });
+      setIsTent(true);
     }
   };
 
   return (
     <div className={'grid-square'} onClick={tentClick}>
-      {tentLookup[isTent] && (
+      {isTent && (
         <Tent
-          setTentLookup={setTentLookup}
-          isTent={isTent}
-          tentLookup={tentLookup}
+          setIsTent={setIsTent}
         />
       )}
       {isApple && (
         <Apple
           updateStockpile={updateStockpile}
           setIsApple={setIsApple}
-          isTent={tentLookup[isTent]}
+          isTent={isTent}
         />
       )}
     </div>
