@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import GridSquare from './GridSquare';
 import useStockpile from './Stockpile';
+import Instructions from './Instructions'
 
 const Grid = () => {
   const [gridLayout] = useState([
@@ -58,8 +59,9 @@ const Grid = () => {
             />
           );
         })}
-      </div>
+        <Instructions />
       {renderStockpile()}
+      </div>
     </>
   );
 };
