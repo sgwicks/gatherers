@@ -32,3 +32,17 @@ export const checkAdjacency = (currentSquare, nextSquare) => {
   return false
 
 }
+
+export const createSquare = () => {
+  const column = Math.ceil(Math.random() * 5);
+  const row = Math.ceil(Math.random() * 5);
+  return {column, row}
+}
+
+export const checkSame = (currentSquare, nextSquare) => {
+  const columns = currentSquare.column === nextSquare.column;
+  const rows = currentSquare.row === nextSquare.row;
+
+  if (columns && rows) return true;
+  return false;
+}

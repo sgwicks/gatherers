@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import Apple from './Apple';
 import Tent from './Tent';
+import {checkSame} from '../utils/utils'
 
 const GridSquare = ({
-  i,
   updateStockpile,
   stockpile,
   startTent,
   apple,
+  square
 }) => {
   const [isApple, setIsApple] = useState(false);
   const [isTent, setIsTent] = useState(false)
 
   useEffect(() => {
-    if (startTent === i) {
+    if (checkSame(startTent, square)) {
       setIsTent(true)
     }
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    if (apple === i) setIsApple(true);
-  }, [apple, i]);
+    if (checkSame(apple, square)) setIsApple(true);
+  }, [apple, square]);
 
   const tentClick = () => {
     if (stockpile > 0 && !isTent) {
