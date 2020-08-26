@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import apple from '../Apple.png';
 
-const useStockpile = (initialStockpile) => {
+const useStockpile = () => {
   const [stockpile, setStockpile] = useState(1);
 
   const updateStockpile = (num) => {
