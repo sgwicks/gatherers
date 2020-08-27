@@ -2,7 +2,7 @@
 
 Welcome to my very first React Game: Gatherers!
 
-This game was build in ReactJS and is a very basic attempt at a game I will probably revisit in future, but not in this repo. It will probably be quicker to rebuild it from scratch with better techniques and better planning. Still, what I have here is fun enough for 5 or 10 minutes of your time.
+This game was built in ReactJS and is an ongoing development. What I have here is the core concept, and I have plenty more planned to make it a more fully fleshed out game. Check back now and then for updates!
 
 ## How to Install
 
@@ -28,8 +28,6 @@ You'll start the game with 1 tent, 1 apple in your stockpile, and 1 apple on the
 To add a tent to the grid, click on the empty space of any square (i.e. not on an apple). You'll see a tent pop up, and you'll lose 1 apple from your stockpile.
 
 To collect more apples, click on an apple that is on the same space as one of your tents.
-
-You **can** create a tent on an apple space, by clicking on the empty space of the square, not the apple.
 
 A new apple will appear on the map every second, and disapper after 5 seconds.
 
