@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GridSquare from './GridSquare';
 import useStockpile from './Stockpile';
-import Instructions from './Instructions'
+import Instructions from './Instructions';
+import {createSquare} from '../utils/utils'
 
 const Grid = () => {
   const [gridLayout] = useState([
@@ -32,14 +33,14 @@ const Grid = () => {
     { row: 5, column: 5 }
   ]);
 
-  const [apple, setApple] = useState(Math.floor(Math.random() * 25));
-  const [startTent] = useState(Math.floor(Math.random() * 25));
+  const [apple, setApple] = useState(createSquare());
+  const [startTent] = useState(createSquare());
 
   const { updateStockpile, renderStockpile, stockpile } = useStockpile();
 
   useEffect(() => {
     setInterval(() => {
-      setApple(Math.floor(Math.random() * 25));
+      setApple(createSquare());
     }, 1000);
   }, []);
 
@@ -52,6 +53,7 @@ const Grid = () => {
             <GridSquare
               key={`Grid ${column}:${row}`}
               i={i}
+              square={square}
               updateStockpile={updateStockpile}
               stockpile={stockpile}
               startTent={startTent}
