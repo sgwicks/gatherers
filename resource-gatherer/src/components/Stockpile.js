@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import apple from '../Apple.png';
 
 const useStockpile = () => {
   const [stockpile, setStockpile] = useState(1);
 
   const updateStockpile = (num) => {
-    if (stockpile >= 0) return setStockpile(stockpile + num);
+    const outcome = stockpile + num
+    if (outcome >= 0) return setStockpile(outcome);
     else setStockpile('YOU LOSE');
   };
 
@@ -16,6 +17,11 @@ const useStockpile = () => {
       <img src={apple} alt='Apples in stockpile' />
     </div>
   );
+
+  useEffect(() => {
+    const appleRot = setInterval(() => updateStockpile(-1), 10000)
+    return () => clearInterval(appleRot)
+  }, [stockpile])
 
   return { renderStockpile, updateStockpile, stockpile };
 };
