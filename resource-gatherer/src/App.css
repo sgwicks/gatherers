@@ -105,6 +105,7 @@ ol li {
   border-width: 5px;
   margin-top: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   grid-area: stockpile;
@@ -112,6 +113,8 @@ ol li {
 
 .stockpile-text {
   font-size: 24px;
+  padding: 0;
+  margin: 0;
 }
 
 .tent-img {
