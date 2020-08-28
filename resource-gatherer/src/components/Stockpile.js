@@ -3,6 +3,7 @@ import apple from '../Apple.png';
 
 const useStockpile = (name, initial) => {
   const [stockpile, setStockpile] = useState(initial);
+  const [rot, triggerRot] = useState(true)
 
   const updateStockpile = (num) => {
     const outcome = stockpile + num
@@ -16,9 +17,14 @@ const useStockpile = (name, initial) => {
   );
 
   useEffect(() => {
-    const appleRot = setInterval(() => updateStockpile(-1), 10000)
-    return () => clearInterval(appleRot)
-  }, [stockpile])
+    if (name === 'Food') {
+      const appleRot = setInterval(() => {
+        updateStockpile(-1)
+        triggerRot(!rot)
+      }, 10000)
+      return () => clearInterval(appleRot)
+    }
+  }, [rot])
 
   return [renderStockpile, updateStockpile, stockpile];
 };
