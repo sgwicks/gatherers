@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import apple from '../Apple.png';
 
-const useStockpile = (name) => {
-  const [stockpile, setStockpile] = useState(1);
+const useStockpile = (name, initial) => {
+  const [stockpile, setStockpile] = useState(initial);
 
   const updateStockpile = (num) => {
     const outcome = stockpile + num
