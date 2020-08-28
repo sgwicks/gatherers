@@ -37,6 +37,7 @@ const Grid = () => {
   const [startTent] = useState(createSquare());
 
   const [ renderFood, updateFood, food ] = useStockpile('Food');
+  const [ renderWood, updateWood, wood ] = useStockpile('Wood');
 
   useEffect(() => {
     setInterval(() => {
@@ -62,7 +63,10 @@ const Grid = () => {
           );
         })}
         <Instructions />
-      {renderFood()}
+        <div id='stockpile'>
+          {renderFood()}
+          {renderWood()}
+        </div>
       </div>
     </>
   );

@@ -11,11 +11,8 @@ const useStockpile = (name) => {
   };
 
   const renderStockpile = () => (
-    <div id='stockpile'>
-      <p className='stockpile-text'>{name}:</p>
-      <p className='stockpile-text'>{stockpile}</p>
-      <img src={apple} alt='Apples in stockpile' />
-    </div>
+      <p className='stockpile-text'>{name}: {stockpile} <img src={apple} alt={`${name} in stockpile`} /></p>
+      
   );
 
   useEffect(() => {
