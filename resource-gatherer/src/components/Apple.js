@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import apple from '../Apple.png';
 
-const Apple = ({ updateStockpile, setIsApple, isTent }) => {
+const Apple = ({ updateFood, setIsApple, isTent }) => {
   
   useEffect(() => {
     setTimeout(() => {
@@ -11,7 +11,7 @@ const Apple = ({ updateStockpile, setIsApple, isTent }) => {
 
   const appleClick = () => {
     if (isTent) {
-      updateStockpile(1);
+      updateFood(1);
       setIsApple(false);
     }
   };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import apple from '../Apple.png';
 
-const useStockpile = () => {
+const useStockpile = (name) => {
   const [stockpile, setStockpile] = useState(1);
 
   const updateStockpile = (num) => {
@@ -12,7 +12,7 @@ const useStockpile = () => {
 
   const renderStockpile = () => (
     <div id='stockpile'>
-      <p className='stockpile-text'>Stockpile:</p>
+      <p className='stockpile-text'>{name}:</p>
       <p className='stockpile-text'>{stockpile}</p>
       <img src={apple} alt='Apples in stockpile' />
     </div>
@@ -23,7 +23,7 @@ const useStockpile = () => {
     return () => clearInterval(appleRot)
   }, [stockpile])
 
-  return { renderStockpile, updateStockpile, stockpile };
+  return [renderStockpile, updateStockpile, stockpile];
 };
 
 export default useStockpile;

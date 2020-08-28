@@ -36,7 +36,7 @@ const Grid = () => {
   const [apple, setApple] = useState(createSquare());
   const [startTent] = useState(createSquare());
 
-  const { updateStockpile, renderStockpile, stockpile } = useStockpile();
+  const [ renderFood, updateFood, food ] = useStockpile('Food');
 
   useEffect(() => {
     setInterval(() => {
@@ -54,15 +54,15 @@ const Grid = () => {
               key={`Grid ${column}:${row}`}
               i={i}
               square={square}
-              updateStockpile={updateStockpile}
-              stockpile={stockpile}
+              updateFood={updateFood}
+              food={food}
               startTent={startTent}
               apple={apple}
             />
           );
         })}
         <Instructions />
-      {renderStockpile()}
+      {renderFood()}
       </div>
     </>
   );

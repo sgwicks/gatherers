@@ -4,8 +4,8 @@ import Tent from './Tent';
 import {checkSame} from '../utils/utils'
 
 const GridSquare = ({
-  updateStockpile,
-  stockpile,
+  updateFood,
+  food,
   startTent,
   apple,
   square
@@ -25,8 +25,8 @@ const GridSquare = ({
   }, [apple, square]);
 
   const tentClick = () => {
-    if (stockpile > 0 && !isTent) {
-      updateStockpile(-1);
+    if (food > 0 && !isTent) {
+      updateFood(-1);
       setIsTent(true);
     }
   };
@@ -40,7 +40,7 @@ const GridSquare = ({
       )}
       {isApple && (
         <Apple
-          updateStockpile={updateStockpile}
+          updateFood={updateFood}
           setIsApple={setIsApple}
           isTent={isTent}
         />
